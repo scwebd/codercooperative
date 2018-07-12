@@ -41,6 +41,11 @@ app.use(passport.session())
 // Routes
 app.use('/user', user)
 
+// If no API routes are hit, send the React app
+app.use(function (req, res) {
+	res.sendFile(path.join(__dirname, "../client/build/index.html"));
+});
+
 // Starting Server 
 app.listen(PORT, () => {
 	console.log(`App listening on PORT: ${PORT}`)
